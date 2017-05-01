@@ -1,0 +1,862 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="@Url.Content("~/Content/mytemplate/")css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="@Url.Content("~/Content/mytemplate/")css/form.css" rel="stylesheet" type="text/css" media="all">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="@Url.Content("~/Content/mytemplate/")js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".dropdown img.flag").addClass("flagvisibility");
+
+            $(".dropdown dt a").click(function() {
+                $(".dropdown dd ul").toggle();
+            });
+
+            $(".dropdown dd ul li a").click(function() {
+                var text = $(this).html();
+                $(".dropdown dt a span").html(text);
+                $(".dropdown dd ul").hide();
+                $("#result").html("Selected value is: " + getSelectedValue("sample"));
+            });
+
+            function getSelectedValue(id) {
+                return $("#" + id).find("dt a span.value").html();
+            }
+
+            $(document).bind('click', function(e) {
+                var $clicked = $(e.target);
+                if (! $clicked.parents().hasClass("dropdown"))
+                    $(".dropdown dd ul").hide();
+            });
+
+
+            $("#flagSwitcher").click(function() {
+                $(".dropdown img.flag").toggleClass("flagvisibility");
+            });
+        });
+    </script>
+    <!-- start menu -->
+    <link href="@Url.Content("~/Content/mytemplate/")css/megamenu.css" rel="stylesheet" type="text/css" media="all">
+    <script type="text/javascript" src="@Url.Content("~/Content/mytemplate/")js/megamenu.js"></script>
+    <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+    <!-- end menu -->
+    <script type="text/javascript" src="@Url.Content("~/Content/mytemplate/")js/jquery.jscrollpane.min.js"></script>
+    <script type="text/javascript" id="sourcecode">
+			$(function()
+			{
+				$('.scroll-pane').jScrollPane();
+			});
+    </script>
+    <!----details-product-slider--->
+    <!-- Include the Etalage files -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/mytemplate/")css/etalage.css">
+    <script src="@Url.Content("~/Content/mytemplate/")js/jquery.etalage.min.js"></script>
+    <!-- Include the Etalage files -->
+    <script>
+						jQuery(document).ready(function($){
+
+							$('#etalage').etalage({
+								thumb_image_width: 300,
+								thumb_image_height: 400,
+
+								show_hint: true,
+								click_callback: function(image_anchor, instance_id){
+									alert('Callback example:\nYou clicked on an image with the anchor: "'+image_anchor+'"\n(in Etalage instance: "'+instance_id+'")');
+								}
+							});
+							// This is for the dropdown list example:
+							$('.dropdownlist').change(function(){
+								etalage_show( $(this).find('option:selected').attr('class') );
+							});
+
+					});
+    </script>
+    <!----//details-product-slider--->
+    <!-- top scrolling -->
+    <script type="text/javascript" src="@Url.Content("~/Content/mytemplate/")js/move-top.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/mytemplate/")js/easing.js"></script>
+    <script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+			});
+		});
+    </script>
+
+</head>
+<body>
+    <div class="header-top">
+        <div class="wrap">
+            <div class="logo">
+                <a href="@Url.Action("Index" , "Home")"><img src="@Url.Content("~/Content/mytemplate/")images/logo.png" alt=""></a>
+            </div>
+            <div class="cssmenu">
+                <ul>
+                    <li class="active">@Html.ActionLink("Sign up & Save", "Register", "Home")</li>
+                    <li>@Html.ActionLink("Store Locator", "Shop", "Home")</li>
+                    <li>@Html.ActionLink("My Account", "Login", "Home")</li>
+                    <li>@Html.ActionLink("Check Out", "CheckOut", "Home")</li>
+                </ul>
+            </div>
+
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="header-bottom">
+        <div class="wrap">
+            <!-- start header menu -->
+            <ul class="megamenu skyblue">
+                <li class="showhide" style="display: none;"><span class="title">MENU</span><span class="icon1"></span><span class="icon2"></span></li>
+                <li style="display: inline-block;"><a class="color1" href="@Url.Action("Index", "Home")">Home</a></li>
+                <li class="grid" style="display: inline-block;">
+                    <a class="color2" href="#">Men</a>
+                    <div class="megapanel">
+                        <div class="row">
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>popular</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("new arrivals", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("men", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("women", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("login", "Login", "Home")</li>
+                                    </ul>
+                                </div>
+                                <div class="h_nav">
+                                    <h4 class="top">men</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("new arrivals", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("men", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("women", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("style videos", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>style zone</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("men", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("women", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("brands", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1"></div>
+                            <div class="col1"></div>
+                            <div class="col1"></div>
+                            <div class="col1"></div>
+                            <img src="@Url.Content("~/Content/mytemplate/")images/nav_img.jpg" alt="">
+                        </div>
+                    </div>
+                </li>
+                <li class="active grid" style="display: inline-block;">
+                    <a class="color4" href="#">Women</a>
+                    <div class="megapanel">
+                        <div class="row">
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>shop</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("new arrivals", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("men", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("women", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("brands", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>help</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("trends", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("sale", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("style videos", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>my company</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("trends", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("sale", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("style videos", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>account</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("login", "Login", "Home")</li>
+                                        <li>@Html.ActionLink("create an account", "Register", "Home")</li>
+                                        <li>@Html.ActionLink("create wishlist", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("my shopping bag", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("brands", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>popular</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("new arrivals", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("men", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("women", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("style videos", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <img src="@Url.Content("~/Content/mytemplate/")images/nav_img1.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col2"></div>
+                            <div class="col1"></div>
+                            <div class="col1"></div>
+                            <div class="col1"></div>
+                            <div class="col1"></div>
+                        </div>
+                    </div>
+                </li>
+                <li style="display: inline-block;">
+                    <a class="color5" href="#">Kids</a>
+                    <div class="megapanel" style="display: none; opacity: 1;">
+                        <div class="row">
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>popular</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("new arrivals", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("men", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("women", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("login", "Login", "Home")</li>
+                                    </ul>
+                                </div>
+                                <div class="h_nav">
+                                    <h4 class="top">man</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("new arrivals", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("men", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("women", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("style videos", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>style zone</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("men", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("women", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("brands", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1"></div>
+                            <div class="col1"></div>
+                            <div class="col1"></div>
+                            <div class="col1"></div>
+                            <img src="@Url.Content("~/Content/mytemplate/")images/nav_img2.jpg" alt="">
+                        </div>
+                    </div>
+                </li>
+                <li style="display: inline-block;">
+                    <a class="color6" href="#">Sale</a>
+                    <div class="megapanel" style="display: none; opacity: 1;">
+                        <div class="row">
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>shop</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("new arrivals", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("men", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("women", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("brands", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                                <div class="h_nav">
+                                    <h4 class="top">my company</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("trends", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("sale", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("style videos", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>man</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("new arrivals", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("men", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("women", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("style videos", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>help</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("trends", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("sale", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("style videos", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>account</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("login", "Login", "Home")</li>
+                                        <li>@Html.ActionLink("create an account", "Register", "Home")</li>
+                                        <li>@Html.ActionLink("create wishlist", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("my shopping bag", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("brands", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>my company</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("trends", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("sale", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("style videos", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>popular</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("new arrivals", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("men", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("women", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("style videos", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col2"></div>
+                            <div class="col1"></div>
+                            <div class="col1"></div>
+                            <div class="col1"></div>
+                            <div class="col1"></div>
+                        </div>
+                    </div>
+                </li>
+                <li style="display: inline-block;">
+                    <a class="color7" href="#">Customize</a>
+                    <div class="megapanel" style="display: none; opacity: 1;">
+                        <div class="row">
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>shop</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("new arrivals", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("men", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("women", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("brands", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>help</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("trends", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("sale", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("style videos", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>my company</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("trends", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("sale", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("style videos", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>account</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("login", "Login", "Home")</li>
+                                        <li>@Html.ActionLink("create an account", "Register", "Home")</li>
+                                        <li>@Html.ActionLink("create wishlist", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("my shopping bag", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("brands", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>my company</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("trends", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("sale", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("style videos", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>popular</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("new arrivals", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("men", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("women", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("style videos", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col2"></div>
+                            <div class="col1"></div>
+                            <div class="col1"></div>
+                            <div class="col1"></div>
+                            <div class="col1"></div>
+                        </div>
+                    </div>
+                </li>
+                <li style="display: inline-block;">
+                    <a class="color8" href="#">Shop</a>
+                    <div class="megapanel" style="display: none;">
+                        <div class="row">
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>style zone</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("men", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("women", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("brands", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>popular</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("new arrivals", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("men", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("login", "Login", "Home")</li>
+                                    </ul>
+                                </div>
+                                <div class="h_nav">
+                                    <h4 class="top">man</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("new arrivals", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("style videos", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                                <div class="col1"></div>
+                                <div class="col1"></div>
+                                <div class="col1"></div>
+                                <div class="col1"></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li style="display: inline-block;">
+                    <a class="color9" href="#">Football</a>
+                    <div class="megapanel" style="display: none; opacity: 1;">
+                        <div class="row">
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>shop</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("new arrivals", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("men", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("women", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("brands", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>help</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("trends", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("sale", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("style videos", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>my company</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("trends", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("sale", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("style videos", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>account</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("login", "Login", "Home")</li>
+                                        <li>@Html.ActionLink("create an account", "Register", "Home")</li>
+                                        <li>@Html.ActionLink("create wishlist", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("my shopping bag", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("brands", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>my company</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("trends", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("sale", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("style videos", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>popular</h4>
+                                    <ul>
+                                        <li>@Html.ActionLink("new arrivals", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("men", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("women", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("accessories", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("kids", "Shop", "Home")</li>
+                                        <li>@Html.ActionLink("style videos", "Shop", "Home")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col2"></div>
+                            <div class="col1"></div>
+                            <div class="col1"></div>
+                            <div class="col1"></div>
+                            <div class="col1"></div>
+                        </div>
+                    </div>
+                </li>
+                <li style="display: inline-block;"><a class="color10" href="#">Running</a></li>
+                <li style="display: inline-block;"><a class="color11" href="#">Originals</a></li>
+                <li style="display: inline-block;"><a class="color12" href="#">Basketball</a></li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+    <div class="footer">
+        <div class="footer-top">
+            <div class="wrap">
+                <div class="col_1_of_footer-top span_1_of_footer-top">
+                    <ul class="f_list">
+                        <li><img src="@Url.Content("~/Content/mytemplate/")images/f_icon.png" alt=""><span class="delivery">Free delivery on all orders over £100*</span></li>
+                    </ul>
+                </div>
+                <div class="col_1_of_footer-top span_1_of_footer-top">
+                    <ul class="f_list">
+                        <li><img src="@Url.Content("~/Content/mytemplate/")images/f_icon1.png" alt=""><span class="delivery">Customer Service :<span class="orange"> (800) 000-2587 (freephone)</span></span></li>
+                    </ul>
+                </div>
+                <div class="col_1_of_footer-top span_1_of_footer-top">
+                    <ul class="f_list">
+                        <li><img src="@Url.Content("~/Content/mytemplate/")images/f_icon2.png" alt=""><span class="delivery">Fast delivery &amp; free returns</span></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="footer-middle">
+            <div class="wrap">
+                <div class="section group">
+                    <div class="col_1_of_middle span_1_of_middle">
+                        <dl id="sample" class="dropdown">
+                            <dt><a href="#"><span>Please Select a Country</span></a></dt>
+                            <dd>
+                                <ul>
+                                    <li><a href="#">Australia<img class="flag flagvisibility" src="@Url.Content("~/Content/mytemplate/")images/as.png" alt=""><span class="value">AS</span></a></li>
+                                    <li><a href="#">Sri Lanka<img class="flag flagvisibility" src="@Url.Content("~/Content/mytemplate/")images/srl.png" alt=""><span class="value">SL</span></a></li>
+                                    <li><a href="#">Newziland<img class="flag flagvisibility" src="@Url.Content("~/Content/mytemplate/")images/nz.png" alt=""><span class="value">NZ</span></a></li>
+                                    <li><a href="#">Pakistan<img class="flag flagvisibility" src="@Url.Content("~/Content/mytemplate/")images/pk.png" alt=""><span class="value">Pk</span></a></li>
+                                    <li><a href="#">United Kingdom<img class="flag flagvisibility" src="@Url.Content("~/Content/mytemplate/")images/uk.png" alt=""><span class="value">UK</span></a></li>
+                                    <li><a href="#">United States<img class="flag flagvisibility" src="@Url.Content("~/Content/mytemplate/")images/us.png" alt=""><span class="value">US</span></a></li>
+                                </ul>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="col_1_of_middle span_1_of_middle">
+                        <ul class="f_list1">
+                            <li>
+                                <span class="m_8">Sign up for email and Get 15% off</span>
+                                <div class="search">
+                                    <input type="text" name="s" class="textbox" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                                    <input type="submit" value="Subscribe" id="submit" name="submit">
+                                    <div id="response"> </div>
+                                </div><div class="clear"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="wrap">
+                <div class="section group">
+                    <div class="col_1_of_5 span_1_of_5">
+                        <h3 class="m_9">Shop</h3>
+                        <ul class="sub_list">
+                            <h4 class="m_10">Men</h4>
+                            <li>@Html.ActionLink("Men's Shoes", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Men's Clothing", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Men's Accessories", "Shop", "Home")</li>
+                        </ul>
+                        <ul class="sub_list">
+                            <h4 class="m_10">Women</h4>
+                            <li>@Html.ActionLink("Women's Shoes", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Women's Clothing", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Women's Accessories", "Shop", "Home")</li>
+                        </ul>
+                        <ul class="sub_list">
+                            <h4 class="m_10">Kids</h4>
+                            <li>@Html.ActionLink("Kids Shoes", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Kids Clothing", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Kids Accessories", "Shop", "Home")</li>
+                        </ul>
+                        <ul class="sub_list">
+                            <h4 class="m_10">style</h4>
+                            <li>@Html.ActionLink("Porsche Design Sport", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Porsche Design Shoes", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Porsche Design Clothing", "Shop", "Home")</li>
+                        </ul>
+                        <ul class="sub_list">
+                            <h4 class="m_10">Adidas Neo Label</h4>
+                            <li>@Html.ActionLink("Adidas NEO Shoes", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Adidas NEO Clothing", "Shop", "Home")</li>
+                        </ul>
+                        <ul class="sub_list1">
+                            <h4 class="m_10">Customise</h4>
+                            <li>@Html.ActionLink("my adidas", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("my team", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("new arrivals", "Shop", "Home")</li>
+                        </ul>
+                    </div>
+                    <div class="col_1_of_5 span_1_of_5">
+                        <h3 class="m_9">Sports</h3>
+                        <ul class="list1">
+                            <li>@Html.ActionLink("Basketball", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Football", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Football Boots", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Predator", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("F50", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Football Clothing", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Golf", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Golf Shoes", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Golf Clothing", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Outdoor", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Outdoor Shoes", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Outdoor Clothing", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Rugby", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Running", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Running Shoes", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Boost", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Supernova", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Running Clothing", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Swimming", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Tennis", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Tennis Shoes", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Tennis Clothing", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Training", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Training Shoes", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Training Clothing", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Training Accessories", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("miCoach", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("All Sports", "Shop", "Home")</li>
+                        </ul>
+                    </div>
+                    <div class="col_1_of_5 span_1_of_5">
+                        <h3 class="m_9">Originals</h3>
+                        <ul class="list1">
+                            <li>@Html.ActionLink(")Originals Shoes", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Gazelle", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Samba", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("LA Trainer", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Superstar", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("SL", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("ZX", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Campus", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Spezial", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Dragon", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Originals Clothing", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Firebird", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Originals Accessories", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Men's Originals", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Women's Originals", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Kid's Originals", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("All Originals", "Shop", "Home")</li>
+                        </ul>
+                    </div>
+                    <div class="col_1_of_5 span_1_of_5">
+                        <h3 class="m_9">Product Types</h3>
+                        <ul class="list1">
+                            <li>@Html.ActionLink("Shirts", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Pants & Tights", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Shirts", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Jerseys", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Hoodies & Track Tops", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Bags", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Jackets", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Hi Tops", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("SweatShirts", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Socks", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Swimwear", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Tracksuits", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Hats", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Football Boots", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Other Accessories", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Sandals & Flip Flops", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Skirts & Dresseses", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Balls", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Watches", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Fitness Equipment", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Eyewear", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Gloves", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Sports Bras", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Scarves", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Shinguards", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Underwear", "Shop", "Home")</li>
+                        </ul>
+                    </div>
+                    <div class="col_1_of_5 span_1_of_5">
+                        <h3 class="m_9">Support</h3>
+                        <ul class="list1">
+                            <li>@Html.ActionLink("Store finder", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Customer Service", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("FAQ", "Shop", "Home")</a></li>
+                            <li>@Html.ActionLink("Online Shop Contact Us", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("about adidas Products", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Size Charts", "Shop", "Home") </li>
+                            <li>@Html.ActionLink("Ordering", "Shop", "Home") </li>
+                            <li>@Html.ActionLink("Payment", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Shipping", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Returning", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Using out Site", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Delivery Terms", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Site Map", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Gift Card", "Shop", "Home")</li>
+
+                        </ul>
+                        <ul class="sub_list2">
+                            <h4 class="m_10">Company Info</h4>
+                            <li>@Html.ActionLink("About Us", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Careers", "Shop", "Home")</li>
+                            <li>@Html.ActionLink("Press", "Shop", "Home")</li>
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <div class="copy">
+            <div class="wrap">
+                <p>© All rights reserved </p>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+			$(document).ready(function() {
+
+				var defaults = {
+		  			containerID: 'toTop', // fading element id
+					containerHoverID: 'toTopHover', // fading element hover id
+					scrollSpeed: 1200,
+					easingType: 'linear'
+		 		};
+
+
+				$().UItoTop({ easingType: 'easeOutQuart' });
+
+			});
+    </script>
+    <a href="#" id="toTop" style="display: none;"><span id="toTopHover"></span><span id="toTopHover" style="opacity: 1;"></span></a>
+    <a href="#" id="toTop">To Top</a>
+</body>
+</html>
